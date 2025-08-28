@@ -138,37 +138,37 @@ export default function Studio() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <Link href="/">
-          <Button variant="ghost" className="text-white hover:bg-white/10">
+          <Button variant="ghost">
             ← Back to Home
           </Button>
         </Link>
-        <h1 className="text-3xl font-bold text-white">🎭 Masquerade Studio</h1>
+        <h1 className="text-3xl font-bold">🎭 Masquerade Studio</h1>
         <div /> {/* Spacer for center alignment */}
       </div>
 
       {/* Error Display */}
       {state.error && (
-        <Card className="bg-red-900/20 border-red-500/50 mb-6">
+        <Card className="border-destructive/50 text-destructive-foreground mb-6">
           <CardContent className="p-4">
-            <p className="text-red-400">{state.error}</p>
+            <p className="text-destructive">{state.error}</p>
           </CardContent>
         </Card>
       )}
 
       {/* Step 1: Select Base Image */}
       {state.step === 'select-base' && (
-        <Card className="bg-slate-800/50 border-purple-500/20 max-w-2xl mx-auto">
+        <Card className="max-w-2xl mx-auto">
           <CardHeader>
-            <CardTitle className="text-white text-center">
+            <CardTitle className="text-center">
               Step 1: Choose Your Base Image
             </CardTitle>
-            <CardDescription className="text-gray-400 text-center">
+            <CardDescription className="text-center">
               Upload your PFP or select from curated examples
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             {/* Upload Area */}
-            <div className="border-2 border-dashed border-purple-500/50 rounded-lg p-8 text-center hover:border-purple-500 transition-colors">
+            <div className="border-2 border-dashed border-muted rounded-lg p-8 text-center hover:border-muted-foreground/50 transition-colors">
               <input
                 type="file"
                 accept="image/*"
@@ -177,9 +177,9 @@ export default function Studio() {
                 id="image-upload"
               />
               <label htmlFor="image-upload" className="cursor-pointer">
-                <div className="text-purple-400 text-4xl mb-4">📸</div>
-                <h3 className="text-white font-semibold mb-2">Upload Your Image</h3>
-                <p className="text-gray-400 text-sm">
+                <div className="text-muted-foreground text-4xl mb-4">📸</div>
+                <h3 className="font-semibold mb-2">Upload Your Image</h3>
+                <p className="text-muted-foreground text-sm">
                   Click to select or drag & drop<br />
                   Supports JPG, PNG, WebP (max 4MB)
                 </p>
@@ -188,7 +188,7 @@ export default function Studio() {
 
             {/* Curated Examples - Coming Soon */}
             <div className="text-center">
-              <p className="text-gray-500 text-sm">
+              <p className="text-muted-foreground text-sm">
                 🚧 Curated gallery coming soon! For now, upload your own image.
               </p>
             </div>
@@ -199,12 +199,12 @@ export default function Studio() {
       {/* Step 2: Select Style */}
       {state.step === 'select-style' && state.baseImage && (
         <div className="max-w-4xl mx-auto">
-          <Card className="bg-slate-800/50 border-purple-500/20 mb-6">
+          <Card className="mb-6">
             <CardHeader>
-              <CardTitle className="text-white text-center">
+              <CardTitle className="text-center">
                 Step 2: Choose Target Style
               </CardTitle>
-              <CardDescription className="text-gray-400 text-center">
+              <CardDescription className="text-center">
                 Select which collection style you want to morph into
               </CardDescription>
             </CardHeader>
@@ -216,13 +216,13 @@ export default function Studio() {
               <img
                 src={state.baseImage}
                 alt="Base image"
-                className="w-32 h-32 object-cover rounded-lg border-2 border-purple-500/50"
+                className="w-32 h-32 object-cover rounded-lg border-2"
               />
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={resetToStart}
-                className="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 text-white rounded-full w-6 h-6 p-0"
+                className="absolute -top-2 -right-2 bg-destructive hover:bg-destructive/90 text-destructive-foreground rounded-full w-6 h-6 p-0"
               >
                 ×
               </Button>
@@ -234,13 +234,13 @@ export default function Studio() {
             {stylePresets.map((style) => (
               <Card
                 key={style.id}
-                className="bg-slate-800/50 border-purple-500/20 hover:border-purple-500 transition-colors cursor-pointer"
+                className="hover:shadow-md transition-all cursor-pointer hover:scale-105"
                 onClick={() => handleStyleSelect(style.id)}
               >
                 <CardHeader className="text-center">
                   <div className="text-4xl mb-2">{style.icon}</div>
-                  <CardTitle className="text-white text-lg">{style.name}</CardTitle>
-                  <CardDescription className="text-gray-400 text-sm">
+                  <CardTitle className="text-lg">{style.name}</CardTitle>
+                  <CardDescription className="text-sm">
                     {style.description}
                   </CardDescription>
                 </CardHeader>
@@ -252,11 +252,11 @@ export default function Studio() {
 
       {/* Step 3: Generating */}
       {state.step === 'generating' && state.isLoading && (
-        <Card className="bg-slate-800/50 border-purple-500/20 max-w-2xl mx-auto">
+        <Card className="max-w-2xl mx-auto">
           <CardContent className="p-8 text-center">
-            <div className="animate-spin w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full mx-auto mb-4"></div>
-            <h3 className="text-white font-semibold mb-2">Crafting Your Masquerade...</h3>
-            <p className="text-gray-400 text-sm">
+            <div className="animate-spin w-12 h-12 border-4 border-muted border-t-primary rounded-full mx-auto mb-4"></div>
+            <h3 className="font-semibold mb-2">Crafting Your Masquerade...</h3>
+            <p className="text-muted-foreground text-sm">
               The AI is working its magic ✨ This usually takes 10-15 seconds.
             </p>
           </CardContent>
@@ -266,12 +266,12 @@ export default function Studio() {
       {/* Step 4: Result */}
       {state.step === 'result' && state.result && state.baseImage && (
         <div className="max-w-4xl mx-auto">
-          <Card className="bg-slate-800/50 border-purple-500/20 mb-6">
+          <Card className="mb-6">
             <CardHeader>
-              <CardTitle className="text-white text-center">
+              <CardTitle className="text-center">
                 🎉 Your Masquerade is Ready!
               </CardTitle>
-              <CardDescription className="text-gray-400 text-center">
+              <CardDescription className="text-center">
                 Before and after transformation
               </CardDescription>
             </CardHeader>
@@ -280,19 +280,19 @@ export default function Studio() {
           {/* Before/After Comparison */}
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             <div className="text-center">
-              <h3 className="text-white font-semibold mb-4">Before</h3>
+              <h3 className="font-semibold mb-4">Before</h3>
               <img
                 src={state.baseImage}
                 alt="Original"
-                className="w-full max-w-sm mx-auto rounded-lg border-2 border-gray-500"
+                className="w-full max-w-sm mx-auto rounded-lg border-2"
               />
             </div>
             <div className="text-center">
-              <h3 className="text-white font-semibold mb-4">After</h3>
+              <h3 className="font-semibold mb-4">After</h3>
               <img
                 src={state.result}
                 alt="Masqueraded"
-                className="w-full max-w-sm mx-auto rounded-lg border-2 border-purple-500 neon-border"
+                className="w-full max-w-sm mx-auto rounded-lg border-2 shadow-lg"
               />
             </div>
           </div>
@@ -300,7 +300,6 @@ export default function Studio() {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Button
-              variant="masquerade"
               size="lg"
               onClick={downloadImage}
               className="px-8"
@@ -311,7 +310,7 @@ export default function Studio() {
               variant="outline"
               size="lg"
               onClick={shareToTwitter}
-              className="px-8 border-blue-500 text-blue-300 hover:bg-blue-500/10"
+              className="px-8"
             >
               🐦 Share on X
             </Button>
