@@ -26,9 +26,9 @@ export default function Home() {
               🎭 Masquerade Now
             </Button>
           </Link>
-          <Button variant="outline" size="lg" className="text-lg px-8 py-4">
+          {/* <Button variant="outline" size="lg" className="text-lg px-8 py-4">
             View Examples
-          </Button>
+          </Button> */}
         </div>
       </div>
 
