@@ -19,6 +19,10 @@ export const metadata: Metadata = {
     title: "PFP Masquerade",
     description: "Morph any PFP into the style of another collection",
   },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+  },
 }
 
 export default function RootLayout({
